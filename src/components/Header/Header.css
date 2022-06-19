@@ -13,3 +13,12 @@
   color: white;
   z-index: 10;
 }
+
+/* media queries */
+
+@media (max-width: 1000px) {
+  .header {
+    padding-top: 15px;
+    font-size: 6.4vw;
+  }
+}
