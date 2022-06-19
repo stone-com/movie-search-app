@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+// import mui box and bottom nav components
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+// import icons for navbar from material icons
+import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
+import TvIcon from '@mui/icons-material/Tv';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import SearchIcon from '@mui/icons-material/Search';
 
 // styles to pass into sx property of box component
 const boxStyles = {
@@ -14,6 +17,7 @@ const boxStyles = {
   zIndex: 10,
 };
 
+// bottom nav component
 const SimpleBottomNavigation = () => {
   const [value, setValue] = useState(0);
 
@@ -33,18 +37,18 @@ const SimpleBottomNavigation = () => {
           sx={{ color: 'white' }}
         />
         <BottomNavigationAction
-          label='Favorites'
-          icon={<FavoriteIcon />}
+          label='Movies'
+          icon={<LocalMoviesIcon />}
           sx={{ color: 'white' }}
         />
         <BottomNavigationAction
-          label='Nearby'
-          icon={<LocationOnIcon />}
+          label='TV Shows'
+          icon={<TvIcon />}
           sx={{ color: 'white' }}
         />
         <BottomNavigationAction
-          label='Nearby'
-          icon={<LocationOnIcon />}
+          label='Search'
+          icon={<SearchIcon />}
           sx={{ color: 'white' }}
         />
       </BottomNavigation>
