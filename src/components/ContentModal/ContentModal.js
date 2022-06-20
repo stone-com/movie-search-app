@@ -5,7 +5,11 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
-import { unavailable, img_500 } from '../../config/config';
+import {
+  unavailable,
+  img_500,
+  unavailableLandscape,
+} from '../../config/config';
 
 const style = {
   position: 'absolute',
@@ -73,13 +77,44 @@ const ContentModal = ({ children, media_type, id }) => {
           {content && (
             <Box sx={style}>
               <div className='contentModal'>
-                <img
+                {/* <img
+                  className='Content_portrait'
                   src={
                     content.poster_path
                       ? `${img_500}/${content.poster_path}`
                       : unavailable
                   }
+                  alt={content.name || content.title}
+                /> */}
+                {/* landscape image for larger/wider screens */}
+                <img
+                  className='Content_landscape'
+                  src={
+                    content.backdrop_path
+                      ? `${img_500}/${content.backdrop_path}`
+                      : unavailableLandscape
+                  }
+                  alt={content.name || content.title}
                 />
+                <div className='modal-about'>
+                  <span className='modal-title'>
+                    {/* render content name or title depending on if tv or movie */}
+                    {content.name || content.title} (
+                    {/* render the release year, getting the date and then using substring to get the first 4 characters from date aka the year */}
+                    {(
+                      content.first_air_date ||
+                      content.release_date ||
+                      '----'
+                    ).substring(0, 4)}
+                    )
+                  </span>
+                  {/* check if the tagline exists, if it does then render it */}
+                  {content.tagline && (
+                    <i className='tagline'>{content.tagline}</i>
+                  )}
+                  {/* render content description  */}
+                  <span className='modal-description'>{content.overview}</span>
+                </div>
               </div>
             </Box>
           )}
