@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import SingleContentCard from '../../components/SingleContent/SingleContentCard';
+import CustomPagination from '../../components/Pagination/CustomPagination';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -17,10 +19,28 @@ const Movies = () => {
 
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [page]);
   return (
     <div>
-      <span className='pageTitle'>Movies</span>
+      <span className='pageTitle'>Discover Movies</span>
+      <div className='trending'>
+        {/* if there is content (the api request worked and set content state), then map through content array, creating a singlecontent card for each and passing in various data as props */}
+        {content &&
+          content.map((content) => {
+            return (
+              <SingleContentCard
+                key={content.id}
+                id={content.id}
+                title={content.title || content.name}
+                poster={content.poster_path}
+                date={content.first_air_date || content.release_date}
+                media_type='movie'
+                vote_average={content.vote_average}
+              />
+            );
+          })}
+      </div>
+      <CustomPagination setPage={setPage} />
     </div>
   );
 };
