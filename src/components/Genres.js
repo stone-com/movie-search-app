@@ -2,6 +2,7 @@ import Chip from '@mui/material/Chip';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 
+// this component is responsible for rendering all of the little genre chips and selecting genres
 const Genres = ({
   selectedGenres,
   setSelectedGenres,
@@ -16,7 +17,7 @@ const Genres = ({
     setGenres(genres.filter((g) => g.id !== genre.id));
     setPage(1);
   };
-
+  // when the little x on a selected genre is clicked, it will remove that genre from selectedgenre array by filtering it out, and then add it back to the genre array
   const handleRemove = (genre) => {
     setSelectedGenres(
       selectedGenres.filter((selected) => selected.id !== genre.id)
@@ -45,26 +46,26 @@ const Genres = ({
   return (
     <div style={{ padding: '6px 0' }}>
       {/* first, map through the selected genres and render them first, then render the rest of the unselected ones */}
-      {selectedGenres.map((genre) => (
-        <Chip
-          style={{ margin: 2 }}
-          label={genre.name}
-          key={genre.id}
-          color='primary'
-          clickable
-          size='small'
-          onDelete={() => handleRemove(genre)}
-        />
-      ))}
+      {selectedGenres &&
+        selectedGenres.map((genre) => (
+          <Chip
+            style={{ margin: 2 }}
+            label={genre.name}
+            key={genre.id}
+            color='secondary'
+            clickable
+            onDelete={() => handleRemove(genre)}
+          />
+        ))}
       {genres &&
         genres.map((genre) => (
           <Chip
-            style={{ margin: 4 }}
+            style={{ margin: 4, outline:'1px solid black', color: 'white' }}
             label={genre.name}
             key={genre.id}
             clickable
-            size='small'
             onClick={() => handleAdd(genre)}
+            
           />
         ))}
     </div>
