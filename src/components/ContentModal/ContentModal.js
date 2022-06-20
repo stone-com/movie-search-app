@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './ContentModal.css';
 import axios from 'axios';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -17,7 +18,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '80%',
+  //   width: '80%',
   bgcolor: 'background.paper',
   border: '4px solid #000',
   boxShadow: 24,
@@ -59,10 +60,10 @@ const ContentModal = ({ children, media_type, id }) => {
   }, []);
 
   return (
-    <div>
-      <Button onClick={handleOpen} className='media'>
+    <>
+      <div onClick={handleOpen} className='media'>
         {children}
-      </Button>
+      </div>
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'
@@ -78,18 +79,18 @@ const ContentModal = ({ children, media_type, id }) => {
           {content && (
             <Box sx={style}>
               <div className='contentModal'>
-                {/* <img
-                  className='Content_portrait'
+                <img
+                  className='Content-portrait'
                   src={
                     content.poster_path
                       ? `${img_500}/${content.poster_path}`
                       : unavailable
                   }
                   alt={content.name || content.title}
-                /> */}
+                />
                 {/* landscape image for larger/wider screens */}
                 <img
-                  className='Content_landscape'
+                  className='Content-landscape'
                   src={
                     content.backdrop_path
                       ? `${img_500}/${content.backdrop_path}`
@@ -117,19 +118,22 @@ const ContentModal = ({ children, media_type, id }) => {
                   <span className='modal-description'>{content.overview}</span>
                   <div></div>
                   <Button
+                    className='modal-button'
                     variant='contained'
                     startIcon={<YouTubeIcon />}
                     color='secondary'
                     target='_blank'
                     href={`https://www.youtube.com/watch?v=${video}`}
-                  ></Button>
+                  >
+                    WATCH THE TRAILER
+                  </Button>
                 </div>
               </div>
             </Box>
           )}
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 };
 
