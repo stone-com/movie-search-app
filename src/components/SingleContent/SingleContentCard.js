@@ -37,3 +37,4 @@ const SingleContentCard = ({
 };
 
 export default SingleContentCard;
+
