@@ -3,6 +3,7 @@ import './SingleContentCard.css';
 // import all image placeholders and url from config file.
 import { img_300, unavailable } from '../../config/config';
 import { Badge } from '@mui/material';
+import ContentModal from '../ContentModal/ContentModal';
 
 // this component is for the card for a single movie or show.
 // receive props for different info about the movie/show
@@ -15,7 +16,7 @@ const SingleContentCard = ({
   vote_average,
 }) => {
   return (
-    <div className='media'>
+    <ContentModal media_type={media_type} id={id} className='media'>
       <Badge
         badgeContent={vote_average}
         color={vote_average > 6 ? 'primary' : 'secondary'}
@@ -31,7 +32,7 @@ const SingleContentCard = ({
         {media_type === 'tv' ? 'TV Show' : 'Movie'}
         <span className='subTitle'>{date}</span>
       </span>
-    </div>
+    </ContentModal>
   );
 };
 
