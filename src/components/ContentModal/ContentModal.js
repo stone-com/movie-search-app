@@ -49,9 +49,7 @@ const ContentModal = ({ children, media_type, id }) => {
       `https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=${process.env.REACT_APP_APIKEY}&language=en-US`
     );
     // extract video key from data, this will be appended to a youtube URL
-    // console.log(data.results[0].key);
-    const URLkey = data.results[0].key;
-    setVideo(URLkey);
+    data.results[0] && setVideo(data.results[0].key);
   };
 
   useEffect(() => {
