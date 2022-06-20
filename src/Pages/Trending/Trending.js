@@ -2,24 +2,26 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import './Trending.css';
 import SingleContentCard from '../../components/SingleContent/SingleContentCard';
+import CustomPagination from '../../components/Pagination/CustomPagination';
 
 // component for trending page
 // will fetch all trending titles and display cards for each one
 const Trending = () => {
   const [content, setContent] = useState([]);
+  const [page, setPage] = useState(1);
 
   // fetch trending movies from api
   const fetchTrending = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_APIKEY}`
+      `https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_APIKEY}&page=${page}`
     );
     console.log(data.results);
     setContent(data.results);
   };
-
+  // every time page state changes, fetch data again with new page.
   useEffect(() => {
     fetchTrending();
-  }, []);
+  }, [page]);
 
   return (
     <div>
@@ -41,6 +43,7 @@ const Trending = () => {
             );
           })}
       </div>
+      <CustomPagination setPage={setPage} />
     </div>
   );
 };

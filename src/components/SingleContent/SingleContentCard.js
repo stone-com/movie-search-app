@@ -2,6 +2,7 @@ import React from 'react';
 import './SingleContentCard.css';
 // import all image placeholders and url from config file.
 import { img_300, unavailable } from '../../config/config';
+import { Badge } from '@mui/material';
 
 // this component is for the card for a single movie or show.
 // receive props for different info about the movie/show
@@ -15,6 +16,10 @@ const SingleContentCard = ({
 }) => {
   return (
     <div className='media'>
+      <Badge
+        badgeContent={vote_average}
+        color={vote_average > 6 ? 'primary' : 'secondary'}
+      />
       {/* if poster exists, use poster as src, if not, show unavailable placeholder photo  */}
       <img
         className='poster'
