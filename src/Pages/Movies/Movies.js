@@ -2,11 +2,14 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import SingleContentCard from '../../components/SingleContent/SingleContentCard';
 import CustomPagination from '../../components/Pagination/CustomPagination';
+import Genres from '../../components/Genres';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
   const [numberOfPages, setNumberOfPages] = useState();
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [genres, setGenres] = useState([]);
 
   const fetchMovies = async () => {
     const { data } = await axios.get(
@@ -23,6 +26,14 @@ const Movies = () => {
   return (
     <div>
       <span className='pageTitle'>Discover Movies</span>
+      <Genres
+        type='movie'
+        selectedGenres={selectedGenres}
+        genres={genres}
+        setGenres={setGenres}
+        setSelectedGenres={setSelectedGenres}
+        setPage={setPage}
+      />
       <div className='trending'>
         {/* if there is content (the api request worked and set content state), then map through content array, creating a singlecontent card for each and passing in various data as props */}
         {content &&
@@ -40,7 +51,10 @@ const Movies = () => {
             );
           })}
       </div>
-      <CustomPagination setPage={setPage} />
+      {/* only display pagination if there is more than one number of pages */}
+      {numberOfPages > 1 && (
+        <CustomPagination setPage={setPage} numberOfPages={numberOfPages} />
+      )}
     </div>
   );
 };
