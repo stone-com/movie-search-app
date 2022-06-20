@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import {
   unavailable,
   img_500,
@@ -114,6 +115,14 @@ const ContentModal = ({ children, media_type, id }) => {
                   )}
                   {/* render content description  */}
                   <span className='modal-description'>{content.overview}</span>
+                  <div></div>
+                  <Button
+                    variant='contained'
+                    startIcon={<YouTubeIcon />}
+                    color='secondary'
+                    target='_blank'
+                    href={`https://www.youtube.com/watch?v=${video}`}
+                  ></Button>
                 </div>
               </div>
             </Box>
