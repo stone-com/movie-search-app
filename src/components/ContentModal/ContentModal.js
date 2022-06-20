@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ContentModal.css';
 import axios from 'axios';
+import Carousel from '../Carousel/Carousel';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -114,7 +115,9 @@ const ContentModal = ({ children, media_type, id }) => {
                   )}
                   {/* render content description  */}
                   <span className='modal-description'>{content.overview}</span>
-                  <div></div>
+                  <div>
+                    <Carousel />
+                  </div>
                   <Button
                     className='modal-button'
                     variant='contained'
