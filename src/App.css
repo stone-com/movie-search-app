@@ -11,3 +11,21 @@
     padding-top: 100px;
   }
 }
+
+.pageTitle {
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5vw;
+  padding: 5px;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+  .pageTitle {
+    font-size: 6.4vw;
+  }
+}

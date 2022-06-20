@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import './Trending.css';
 import SingleContentCard from '../../components/SingleContent/SingleContentCard';
 
 // component for trending page
@@ -22,7 +23,7 @@ const Trending = () => {
 
   return (
     <div>
-      <span className='pageTitle'>Trending</span>
+      <span className='pageTitle'>What's trending today</span>
       <div className='trending'>
         {/* if there is content (the api request worked and set content state), then map through content array, creating a singlecontent card for each and passing in various data as props */}
         {content &&
