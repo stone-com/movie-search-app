@@ -8,6 +8,7 @@ const useGenres = (selectedGenres) => {
 
   const GenreIds = selectedGenres.map((genre) => genre.id);
   return GenreIds.reduce((acc, curr) => acc + ',' + curr);
+  
 };
 
 export default useGenres;

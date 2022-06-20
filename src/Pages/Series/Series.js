@@ -11,6 +11,7 @@ const Series = () => {
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
   const [numOfPages, setNumOfPages] = useState();
+  // calls the useGenre custom hook, passing in selectedGenres array. Whenever this changes(another gewnre is clicked or removed), this will update and will re fetch passing in updated selected genres into search query
   const genreforURL = useGenre(selectedGenres);
 
   const fetchSeries = async () => {
@@ -25,7 +26,6 @@ const Series = () => {
   useEffect(() => {
     window.scroll(0, 0);
     fetchSeries();
-    // eslint-disable-next-line
   }, [genreforURL, page]);
 
   return (
@@ -40,6 +40,7 @@ const Series = () => {
         setPage={setPage}
       />
       <div className='trending'>
+        {/* if there is content (the api request worked and set content state), then map through content array, creating a singlecontent card for each and passing in various data as props */}
         {content &&
           content.map((c) => (
             <SingleContentCard
