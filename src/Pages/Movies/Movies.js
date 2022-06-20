@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import SingleContentCard from '../../components/SingleContent/SingleContentCard';
 import CustomPagination from '../../components/Pagination/CustomPagination';
 import Genres from '../../components/Genres';
+import useGenre from '../../Hooks/useGenre';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -10,19 +11,21 @@ const Movies = () => {
   const [numberOfPages, setNumberOfPages] = useState();
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [genres, setGenres] = useState([]);
+  // calls the useGenre custom hook, passing in selectedGenres array. Whenever this changes(another gewnre is clicked or removed), this will update and will re fetch passing in updated selected genres into search query
+  const genreforURL = useGenre(selectedGenres);
 
   const fetchMovies = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
     );
     // set content state to results array from data
     setContent(data.results);
     setNumberOfPages(data.total_pages);
   };
-
+  // whenever page state or seletced genres changes(useGenre hook), re-fetch data with new genres or new page
   useEffect(() => {
     fetchMovies();
-  }, [page]);
+  }, [page, genreforURL]);
   return (
     <div>
       <span className='pageTitle'>Discover Movies</span>
