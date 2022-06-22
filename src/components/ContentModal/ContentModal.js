@@ -116,7 +116,8 @@ const ContentModal = ({ children, media_type, id }) => {
                   {/* render content description  */}
                   <span className='modal-description'>{content.overview}</span>
                   <div>
-                    <Carousel />
+                    {/* render carousel passing in media type and Id*/}
+                    <Carousel media_type={media_type} id={id} />
                   </div>
                   <Button
                     className='modal-button'
